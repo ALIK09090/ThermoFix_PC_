@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ThermoFix PC | Gaming Service</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#020617;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* Animated background */
+
+body::before{
+    content:"";
+    position:fixed;
+    width:200%;
+    height:200%;
+    background:
+    radial-gradient(circle,#2563eb33 1px,transparent 1px);
+    background-size:40px 40px;
+    animation:bgMove 18s linear infinite;
+    z-index:-2;
+}
+
+@keyframes bgMove{
+    from{
+        transform:translate(0,0);
+    }
+    to{
+        transform:translate(-200px,-200px);
+    }
+}
+
+.glow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    background:#2563eb33;
+    filter:blur(120px);
+    z-index:-1;
+}
+
+.glow1{
+    top:-120px;
+    left:-120px;
+}
+
+.glow2{
+    bottom:-120px;
+    right:-120px;
+}
+
+/* Header */
+
+header{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:20px;
+}
+
+.hero{
+    max-width:900px;
+}
+
+.logo{
+    font-family:'Orbitron',sans-serif;
+    font-size:78px;
+    font-weight:800;
+    color:#60a5fa;
+    text-shadow:
+    0 0 10px #2563eb,
+    0 0 30px #2563eb;
+    animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{
+        text-shadow:
+        0 0 10px #2563eb,
+        0 0 30px #2563eb;
+    }
+
+    50%{
+        text-shadow:
+        0 0 20px #60a5fa,
+        0 0 60px #2563eb;
+    }
+}
+
+.hero p{
+    margin-top:25px;
+    color:#cbd5e1;
+    font-size:22px;
+    line-height:1.8;
+}
+
+.buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    padding:16px 34px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s;
+}
+
+.btn-main{
+    background:#2563eb;
+    color:white;
+    box-shadow:0 0 20px rgba(37,99,235,.5);
+}
+
+.btn-outline{
+    border:2px solid #2563eb;
+    color:#93c5fd;
+}
+
+.btn:hover{
+    transform:translateY(-5px) scale(1.03);
+}
+
+/* Sections */
+
+section{
+    max-width:1200px;
+    margin:auto;
+    padding:100px 20px;
+}
+
+.title{
+    text-align:center;
+    font-size:46px;
+    margin-bottom:60px;
+    font-family:'Orbitron',sans-serif;
+}
+
+/* Cards */
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.card{
+    background:rgba(15,23,42,.9);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:24px;
+    padding:30px;
+    backdrop-filter:blur(12px);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(135deg,transparent,#2563eb22,transparent);
+    opacity:0;
+    transition:.4s;
+}
+
+.card:hover::before{
+    opacity:1;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 30px rgba(37,99,235,.35);
+}
+
+.card h3{
+    margin-bottom:18px;
+    font-size:24px;
+}
+
+.card p{
+    color:#cbd5e1;
+    line-height:1.7;
+}
+
+/* Before After */
+
+.compare{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+}
+
+.compare-box{
+    background:#0f172a;
+    border-radius:24px;
+    padding:30px;
+    text-align:center;
+}
+
+.compare-box h2{
+    margin-bottom:20px;
+}
+
+.hot{
+    color:#ef4444;
+    font-size:40px;
+    font-weight:800;
+}
+
+.cool{
+    color:#22c55e;
+    font-size:40px;
+    font-weight:800;
+}
+
+/* Reviews */
+
+.review{
+    font-style:italic;
+}
+
+/* Contact */
+
+.contact{
+    text-align:center;
+}
+
+.phone{
+    font-size:42px;
+    font-weight:800;
+    color:#60a5fa;
+    margin:25px 0;
+}
+
+/* Floating */
+
+.float-buttons{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+    z-index:1000;
+}
+
+.float-btn{
+    background:#2563eb;
+    color:white;
+    padding:14px 20px;
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:700;
+    box-shadow:0 0 20px rgba(37,99,235,.45);
+    transition:.3s;
+}
+
+.float-btn:hover{
+    transform:scale(1.08);
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    background:#01040d;
+    color:#94a3b8;
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.logo{
+    font-size:48px;
+}
+
+.hero p{
+    font-size:18px;
+}
+
+.title{
+    font-size:34px;
+}
+
+.phone{
+    font-size:30px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="glow glow1"></div>
+<div class="glow glow2"></div>
+
+<div class="float-buttons">
+    <a class="float-btn" href="https://wa.me/77772987178">WhatsApp</a>
+    <a class="float-btn" href="tel:87772987178">Позвонить</a>
+</div>
+
+<header>
+
+    <div class="hero">
+
+        <div class="logo">THERMOFIX PC</div>
+
+        <p>
+            Gaming-style сервис по чистке компьютеров,
+            замене термопасты и установке Windows в Павлодаре.
+            Быстро. Мощно. Надежно.
+        </p>
+
+        <div class="buttons">
+            <a class="btn btn-main" href="#services">Наши услуги</a>
+            <a class="btn btn-outline" href="#contact">Связаться</a>
+        </div>
+
+    </div>
+
+</header>
+
+<section id="services">
+
+    <h1 class="title">УСЛУГИ</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>🧹 Чистка ПК</h3>
+            <p>
+                Полная очистка компьютера от пыли,
+                чистка вентиляторов и охлаждения.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>❄ Замена термопасты</h3>
+            <p>
+                Снижение температуры процессора
+                и улучшение производительности.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>💻 Установка Windows</h3>
+            <p>
+                Windows 10/11, драйвера,
+                программы и оптимизация системы.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>⚙ Оптимизация ПК</h3>
+            <p>
+                Ускорение системы,
+                удаление мусора и лагов.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h1 class="title">ПОЧЕМУ ВЫБИРАЮТ НАС</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h3>⭐ Отличные отзывы</h3>
+            <p>
+                Клиенты рекомендуют ThermoFix PC друзьям
+                и возвращаются снова.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>⚡ Быстрое выполнение</h3>
+            <p>
+                Большинство работ выполняется
+                в течение одного дня.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🛡 Аккуратность</h3>
+            <p>
+                Бережное обслуживание без риска
+                повреждения комплектующих.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🔥 Gaming стиль</h3>
+            <p>
+                Современный подход и атмосфера
+                настоящего tech-сервиса.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h1 class="title">ДО / ПОСЛЕ</h1>
+
+    <div class="compare">
+
+        <div class="compare-box">
+            <h2>До обслуживания</h2>
+            <div class="hot">95°C</div>
+            <p>Шум, перегрев и лаги</p>
+        </div>
+
+        <div class="compare-box">
+            <h2>После ThermoFix</h2>
+            <div class="cool">58°C</div>
+            <p>Тихая и стабильная работа</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section>
+
+    <h1 class="title">ОТЗЫВЫ</h1>
+
+    <div class="cards">
+
+        <div class="card review">
+            <h3>Азамат</h3>
+            <p>
+                "Компьютер стал намного быстрее,
+                температуры сильно упали."
+            </p>
+        </div>
+
+        <div class="card review">
+            <h3>Руслан</h3>
+            <p>
+                "Очень аккуратно сделали чистку
+                и поставили Windows."
+            </p>
+        </div>
+
+        <div class="card review">
+            <h3>Данил</h3>
+            <p>
+                "Теперь ПК работает тихо как новый.
+                Рекомендую."
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="contact" id="contact">
+
+    <h1 class="title">СВЯЗАТЬСЯ</h1>
+
+    <div class="phone">
+        +7 777 298 71 78
+    </div>
+
+    <p>
+        ThermoFix PC — забота о вашем компьютере.
+    </p>
+
+</section>
+
+<footer>
+    © 2026 ThermoFix PC | Павлодар
+</footer>
+
+</body>
+</html>
